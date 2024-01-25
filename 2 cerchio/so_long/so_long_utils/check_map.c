@@ -6,13 +6,13 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:13:30 by aconciar          #+#    #+#             */
-/*   Updated: 2023/12/12 18:37:07 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:39:15 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_exit(char **map, int count, int a, int l, int p)
+int	check_exit(char **map, int p)
 {
 	t_point	cord;
 	int		exit;
@@ -20,14 +20,13 @@ int	check_exit(char **map, int count, int a, int l, int p)
 	cord.x = 0;
 	cord.y = 0;
 	exit = 5;
-	if (count == 0 || a == l)
-		return (1);
 	while (map[cord.y])
 	{
 		while (map[cord.y][cord.x])
 		{
-			if (map[cord.y][cord.x] != '1' && map[cord.y][cord.x] != 'X'
-				&& map[cord.y][cord.x] != 'E' && map[cord.y][cord.x] != 'F')
+			if (map[cord.y][cord.x] != '1' && map[cord.y][cord.x] != 'K'
+				&& map[cord.y][cord.x] != 'E' && map[cord.y][cord.x] != 'F'
+				&& map[cord.y][cord.x] != 'X')
 				return (1);
 			if (map[cord.y][cord.x] == 'E')
 				exit -= 5;
@@ -41,12 +40,9 @@ int	check_exit(char **map, int count, int a, int l, int p)
 	return (exit + p);
 }
 
-
 int	find_p(char **map, t_data *data, int x, int y)
 {
-	int	count;
-
-	count = 0;
+	data->tot_coll = 0;
 	while (map[y])
 	{
 		while (map[y][x])
@@ -57,7 +53,7 @@ int	find_p(char **map, t_data *data, int x, int y)
 				data->p.y = y;
 			}
 			if (map[y][x] == 'C')
-				count++;
+				data->tot_coll++;
 			x++;
 		}
 		x = 0;
@@ -65,59 +61,11 @@ int	find_p(char **map, t_data *data, int x, int y)
 	}
 	data->size.x = ft_strlen(map[0]);
 	data->size.y = y;
+	if (data->tot_coll == 0 || data->size.x == data->size.y)
+		return (1);
 	if (data->size.x != data->p.x && data->size.y != data->p.y)
 		flood_fill(map, data->size, data->p);
-	return (check_exit(map, count, data->size.x, data->size.y, 3));
-}
-
-
-
-int	check_wall(char **map, int x, int y)
-{
-	while (map[0][x])
-	{
-		if (map[0][x] != '1')
-			return (1);
-		x++;
-	}
-	x = 0;
-	while (map[y])
-	{
-		if (map[y][x] != '1')
-			return (1);
-		y++;
-	}
-	while (map[y] && map[y][x++])
-	{
-		if (map[y][x] != '1')
-			return (1);
-	}
-	while (--y >= 0)
-	{
-		if (map[y][x] != '1')
-			return (1);
-	}
-	return (0);
-}
-
-int	size_check(char **mat)
-{
-	t_point	c;
-	int		i;
-
-	c.x = 0;
-	c.y = 0;
-	i = ft_strlen(mat[c.y]);
-	while (mat[c.y])
-	{
-		while (mat[c.y][c.x])
-			c.x++;
-		if (c.x != i)
-			return (1);
-		c.x = 0;
-		c.y++;
-	}
-	return (check_wall(mat, 0, 1));
+	return (check_exit(map, 3));
 }
 
 int	check_map(t_data *front)
@@ -126,7 +74,12 @@ int	check_map(t_data *front)
 	int		y;
 	char	**tmp;
 
+	front->morte = 0;
 	y = 0;
+	if (!front->mat)
+	{
+		exit(0);
+	}
 	tmp = (char **)malloc (sizeof(char *) * (matlen(front->mat) + 10));
 	if (!tmp)
 		return (0);

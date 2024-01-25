@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:47:35 by aconciar          #+#    #+#             */
-/*   Updated: 2023/12/07 19:12:40 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:34:12 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,12 @@ void	free_mat(char **mat)
 	free(mat);
 }
 
-void	put_image(t_data *front, int key, int x, int y)
-{
-	if (front->mat[y][x] == '1')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.wall, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == '0')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.zero, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == 'C')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.coll, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == 'E')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.exit, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == 'P' && key == 'w')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.back, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == 'P' && key == 'a')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.left, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == 'P' && key == 'd')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.right, x * PIXEL, y * PIXEL);
-	if (front->mat[y][x] == 'P' && key == 's')
-		mlx_put_image_to_window(front->mlx_ptr, front->win_ptr,
-			front->img.front, x * PIXEL, y * PIXEL);
-}
-
 void	rend_map(t_data *front, int key)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	*str;
+	char	*str2;
 
 	x = 0;
 	y = 0;
@@ -70,18 +44,15 @@ void	rend_map(t_data *front, int key)
 		x = 0;
 		y++;
 	}
+	str = ft_itoa(front->moves);
+	str2 = ft_strjoin("moves : ", str);
+	free(str);
+	mlx_string_put(front->mlx_ptr, front->win_ptr, 30, 30, 0xFF0000, str2);
+	free (str2);
 }
 
-void	file_to_image(t_data *data, int x, int y)
+void	file_to_image2(t_data *data, int x, int y)
 {
-	data->img.front = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/front.xpm", &x, &y);
-	data->img.back = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/back.xpm", &x, &y);
-	data->img.right = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/right.xpm", &x, &y);
-	data->img.left = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/left.xpm", &x, &y);
 	data->img.coll = mlx_xpm_file_to_image(data->mlx_ptr,
 			"textures/coll.xpm", &x, &y);
 	data->img.zero = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -90,16 +61,47 @@ void	file_to_image(t_data *data, int x, int y)
 			"textures/wall.xpm", &x, &y);
 	data->img.exit = mlx_xpm_file_to_image(data->mlx_ptr,
 			"textures/exit.xpm", &x, &y);
+	data->img.spinegiu = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/spinegiu.xpm", &x, &y);
+	data->img.spinesu = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/spinesu.xpm", &x, &y);
+	data->img.trapdoor = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/trapdoor.xpm", &x, &y);
+	data->img.morte = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/morte.xpm", &x, &y);
+}
+
+void	file_to_image(t_data *data, int x, int y)
+{
+	data->coll = 0;
+	data->img.front = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/front.xpm", &x, &y);
+	data->img.frontspine = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/frontspine.xpm", &x, &y);
+	data->img.back = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/back.xpm", &x, &y);
+	data->img.backspine = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/backspine.xpm", &x, &y);
+	data->img.right = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/right.xpm", &x, &y);
+	data->img.rightspine = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/rightspine.xpm", &x, &y);
+	data->img.left = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/left.xpm", &x, &y);
+	data->img.leftspine = mlx_xpm_file_to_image(data->mlx_ptr,
+			"textures/leftspine.xpm", &x, &y);
+	file_to_image2(data, x, y);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_data	front;
 
+	front.moves = 0;
 	if (argc != 2)
 		return (1);
 	front.mat = map(argv[1]);
-	if (check_map(&front) != 0)
+	if (check_map(&front) != 0 || !front.mat)
 	{
 		ft_printf("Error\nInvalid map");
 		return (free_mat(front.mat), 1);

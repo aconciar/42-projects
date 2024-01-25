@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:03:19 by aconciar          #+#    #+#             */
-/*   Updated: 2023/12/12 18:12:20 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:54:07 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ void	flood_fill(char **tab, t_point size, t_point begin)
 	}
 	return ;
 }
-

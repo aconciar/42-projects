@@ -1,46 +1,56 @@
-NAME = so_long.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-MLX = -lm -lXext -lX11
+NAME = so_long
+CC = cc
+CFLAGS = -Wextra -Werror -Wall -g
+LINKS = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
+LINKS_LINUX = -lX11 -lm -lXext
 RM = rm -f
-AR = ar rcs
 
-PRINTF := ./ft_printf/libftprintf.a
-LIBFT := ./libft/libft.a
-MINILIBX := minilibx/libmlx.a
+MINILIBX = minilibx-linux/libmlx.a
+LIBFT = libftsl/libft.a
+PRINTF = ft_printfsl/libftprintf.a
 
-SRCS = main.c /
-	check_map.c /
-	keypress.c /
-	print_map.c /
+SRC = so_long_utils/main \
+	so_long_utils/check_map \
+	so_long_utils/check_map2 \
+	so_long_utils/flood_fill \
+	so_long_utils/keypress \
+	so_long_utils/print_map \
+	so_long_utils/put_image \
+	so_long_utils/ft_free
 
-OBJS = $(SRCS:.c=.o)
+FUNCTIONS:= $(patsubst %, %.c, $(SRC))
+
+OBJ = $(FUNCTIONS:.c=.o)
+
+$(NAME): lib_comp mlx_comp comp_linux
 
 all: $(NAME)
 
-$(NAME): lib_comp mlx_comp lib_comp
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 lib_comp:
-	make -C libft/
+	$(MAKE) -C libftsl/
+	$(MAKE) -C ft_printfsl/
 mlx_comp:
-	make -C minilibx/
-printf_comp:
-	make -C ft_printf/
+	$(MAKE) -C minilibx-linux/
 
-comp:
-	$(CC) $(CFLAGS) $(MLX) $(SRCS) $(LIBFT) $(PRINTF) $(MINILIBX) 
-
-comp_linux:
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIBX) $(MLX) -o
+comp_linux: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) $(LINKS_LINUX) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ)
+	$(MAKE) clean -C libftsl/
+	$(MAKE) clean -C ft_printfsl/
 
 fclean: clean
-	make -C minilibx/
-	make -C libft/
+	$(MAKE) clean -C minilibx-linux/
+	$(MAKE) fclean -C libftsl/
+	$(MAKE) fclean -C ft_printfsl/
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all lib_comp mlx_comp comp_linux clean fclean re
+
+.SILENT:
