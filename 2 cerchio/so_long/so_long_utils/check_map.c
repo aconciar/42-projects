@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:13:30 by aconciar          #+#    #+#             */
-/*   Updated: 2024/01/18 18:39:15 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:53:48 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ int	check_map(t_data *front)
 
 	front->morte = 0;
 	y = 0;
-	if (!front->mat)
-	{
-		exit(0);
-	}
 	tmp = (char **)malloc (sizeof(char *) * (matlen(front->mat) + 10));
 	if (!tmp)
 		return (0);

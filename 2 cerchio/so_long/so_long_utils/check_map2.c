@@ -46,7 +46,7 @@ int	check_wall(char **map, int x, int y)
 		y++;
 	}
 	y--;
-	return (check_wall2 (map, x, y));
+	return (check_wall2 (map, x , y));
 }
 
 int	size_check(char **mat)

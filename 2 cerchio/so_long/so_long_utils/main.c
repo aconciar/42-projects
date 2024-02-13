@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:47:35 by aconciar          #+#    #+#             */
-/*   Updated: 2024/01/18 18:34:12 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:15:35 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (1);
 	front.mat = map(argv[1]);
-	if (check_map(&front) != 0 || !front.mat)
+	if (check_map(&front) != 0)
 	{
 		ft_printf("Error\nInvalid map");
 		return (free_mat(front.mat), 1);

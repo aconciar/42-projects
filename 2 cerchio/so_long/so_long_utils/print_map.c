@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:33:00 by aconciar          #+#    #+#             */
-/*   Updated: 2024/01/23 15:35:55 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:24:38 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ char	**readmap(int map, int cont)
 	char	*str;
 	char	**mat;
 
-	buf = ft_calloc(100000, 1);
-	str = ft_calloc(1, 1);
+	buf = (char *)malloc(sizeof(char) * 10000);
+	str = (char *)malloc(sizeof(char));
+	str[0] = '\0';
+	buf[0] = '\0';
 	while (cont > 0)
 	{
 		cont = read(map, buf, 10000);
 		if (cont == -1)
 		{
-			free(str);
 			free(buf);
 			return (0);
 		}
@@ -74,8 +75,6 @@ char	**map(char *fd)
 	char	**mat;
 
 	map = open(fd, O_RDONLY);
-	if (map == -1)
-		exit(0);
 	mat = readmap(map, 1);
 	return (mat);
 }

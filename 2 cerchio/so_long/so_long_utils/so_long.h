@@ -13,9 +13,9 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../libftsl/libft.h"
-# include "../ft_printfsl/ft_printf.h"
-# include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+# include "../minilibx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <X11/X.h>

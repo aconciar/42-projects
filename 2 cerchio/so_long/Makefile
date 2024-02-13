@@ -5,9 +5,9 @@ LINKS = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
 LINKS_LINUX = -lX11 -lm -lXext
 RM = rm -f
 
-MINILIBX = minilibx-linux/libmlx.a
-LIBFT = libftsl/libft.a
-PRINTF = ft_printfsl/libftprintf.a
+MINILIBX = minilibx/libmlx.a
+LIBFT = libft/libft.a
+PRINTF = ft_printf/libftprintf.a
 
 SRC = so_long_utils/main \
 	so_long_utils/check_map \
@@ -30,23 +30,23 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 lib_comp:
-	$(MAKE) -C libftsl/
-	$(MAKE) -C ft_printfsl/
+	$(MAKE) -C libft/
+	$(MAKE) -C ft_printf/
 mlx_comp:
-	$(MAKE) -C minilibx-linux/
+	$(MAKE) -C minilibx/
 
 comp_linux: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(MINILIBX) $(LINKS_LINUX) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
-	$(MAKE) clean -C libftsl/
-	$(MAKE) clean -C ft_printfsl/
+	$(MAKE) clean -C libft/
+	$(MAKE) clean -C ft_printf/
 
 fclean: clean
-	$(MAKE) clean -C minilibx-linux/
-	$(MAKE) fclean -C libftsl/
-	$(MAKE) fclean -C ft_printfsl/
+	$(MAKE) clean -C minilibx/
+	$(MAKE) fclean -C libft/
+	$(MAKE) fclean -C ft_printf/
 	$(RM) $(NAME)
 
 re: fclean all
