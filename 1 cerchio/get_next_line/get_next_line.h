@@ -6,13 +6,14 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:24:27 by aconciar          #+#    #+#             */
-/*   Updated: 2023/10/30 11:08:33 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:49:59 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <string.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

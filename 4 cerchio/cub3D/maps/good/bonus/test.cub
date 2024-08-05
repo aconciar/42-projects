@@ -1,0 +1,15 @@
+NO textures/normal_wall.xpm
+SO textures/torch_wall.xpm
+WE textures/sign_wall.xpm
+EA textures/mossed_wall.xpm
+
+F 20,20,20
+C 200,200,200
+
+111111111
+10E000001
+100000001
+100000001
+100111D11
+100100001
+111111111

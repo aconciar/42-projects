@@ -4,8 +4,9 @@ CC:= cc
 NAME:= pipex
 BONUS:= pipex_bonus
 
-PATH_GNL:= get_next_line
-GNL:= get_next_line.a
+
+PATH_GNL:=get_next_line
+GNL=get_next_line.a
 
 PATH_LIBFT:= libft
 LIBFT:= libft.a
@@ -14,7 +15,7 @@ FUNCTIONS = pipex_utils/pipex.c \
 			pipex_utils/ft_execute.c
 
 BONUS_FUNCTIONS = pipex_utils/pipex_bonus.c \
-			pipex_utils/ft_execute_bonus.c
+			pipex_utils/ft_execute.c \
 
 FUNCTIONS_OBJ:= $(FUNCTIONS:.c=.o)
 BONUS_OBJ:= $(BONUS_FUNCTIONS:.c=.o)
@@ -26,8 +27,7 @@ all: $(NAME)
 	
 $(NAME): $(FUNCTIONS_OBJ)
 	$(MAKE) -C $(PATH_LIBFT)
-	$(MAKE) -C $(PATH_GNL)
-	$(CC) $(FLAGS) $(FUNCTIONS_OBJ) $(PATH_LIBFT)/$(LIBFT) $(PATH_GNL)/$(GNL) -o $(NAME)
+	$(CC) $(FLAGS) $(FUNCTIONS_OBJ) $(PATH_LIBFT)/$(LIBFT) -o $(NAME)
 
 bonus: $(BONUS_OBJ)
 	$(MAKE) -C $(PATH_LIBFT)

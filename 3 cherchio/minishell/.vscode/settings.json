@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"minishell.h": "c",
+		"type_traits": "c",
+		"compare": "c",
+		"errno.h": "c",
+		"features.h": "c",
+		"libft.h": "c"
+	}
+}

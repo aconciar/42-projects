@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:23:07 by aconciar          #+#    #+#             */
-/*   Updated: 2023/11/02 19:14:49 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:22:36 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,11 @@ char	*get_next_line(int fd)
 	static char	*str;
 	int			cont;
 
+	if (fd == -42)
+		free(str);
 	cont = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		return (NULL);
 	str = readline(fd, str, cont);
 	if (!str)
 	{
@@ -109,24 +111,23 @@ char	*get_next_line(int fd)
 	}
 	line = get_linea(str);
 	str = scroll(str);
-	if (str[0] == '\0')
-		free(str);
 	return (line);
 }
 
 int	main(void)
 {
 	int		fd;
-	int		i;
+	int		i = 5;
+	char	*str;
 
-	i = 6;
-	fd = open("map.txt", O_RDONLY);
+	fd = open("file.txt", O_RDONLY);
 	while (i > 0)
 	{
-		char	*temp = get_next_line(fd);
-		printf("%s",temp);
-		free(temp);
+		str = get_next_line(fd);
+		printf("str: %s", str);
+		free(str);
 		i--;
 	}
+	// get_next_line(-42);
 	return (0);
 }

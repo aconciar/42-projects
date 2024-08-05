@@ -6,77 +6,106 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:56:59 by aconciar          #+#    #+#             */
-/*   Updated: 2024/02/12 19:24:48 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:59:35 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	ft_error(char *str)
+void	ft_child_process(char *cmd, char **envp, int outfile, int check)
 {
-	ft_putstr_fd(str, 2);
-	exit (7);
-}
+	pid_t	pid_child;
+	int		fd[2];
 
-void	ft_child_process(int *fd, char **argv, char **envp, int infile, int pid)
-{
 	if (pipe(fd) == -1)
+		ft_error("Error2\n");
+	pid_child = fork();
+	if (pid_child == -1)
 		ft_error("Error\n");
-	pid = fork();
-	if (pid == -1)
-		ft_error("Error\n");
-	dup2(fd[1], STDOUT_FILENO);
-	dup2(infile, STDIN_FILENO);
-	close(fd[0]);
-	ft_execute(argv[2], envp);
-}
-
-void	ft_parent_process(int *fd, char **argv, char **envp, int outfile)
-{
-	dup2(fd[0], STDIN_FILENO);
-	dup2(outfile, STDOUT_FILENO);
-	close(fd[1]);
-	ft_execute(argv[3], envp);
+	if (pid_child == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		ft_execute(cmd, envp);
+	}
+	else if (check == 0)
+	{
+		dup2(outfile, STDOUT_FILENO);
+		ft_execute(cmd, envp);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(pid_child, NULL, 0);
+	}
 }
 
 void	ft_open_files(int *infile, int *outfile, char *argv[], int argc)
 {
 	*infile = open(argv[1], O_RDONLY, 0777);
 	if (*infile == -1)
-		ft_error("Error\n");
+		ft_error("Error7\n");
 	*outfile = open(argv[argc], O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (*outfile == -1)
-		ft_error("Error\n");
+		ft_error("Error3\n");
 	dup2(*infile, STDIN_FILENO);
+}
+
+void	ft_here_doc(char *limiter, int argc)
+{
+	pid_t	pid_hd;
+	int		fd[2];
+	char	*line;
+
+	if (argc < 6 && pipe(fd) == -1)
+		ft_error("Error1\n");
+	pid_hd = fork();
+	if (pid_hd == 0)
+	{
+		close(fd[0]);
+		while (1)
+		{
+			line = get_next_line(0);
+			if (ft_strcmp(line, limiter) == 0)
+				exit(0);
+			ft_putstr_fd(line, fd[1]);
+			ft_putstr_fd("\n", fd[1]);
+		}
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		wait(NULL);
+	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		fd[2];
 	int		outfile;
 	int		infile;
-	pid_t	pid;
 	int		i;
 
 	if (argc >= 5)
 	{
-		ft_open_files(&infile, &outfile, argv, argc - 1);
-		i = argc - 5;
-		while (i > 0)
+		i = 1;
+		if (ft_strcmp(argv[1], "here_doc") == 0)
 		{
-			if (pipe(fd) == -1)
-				ft_error("Error\n");
-			pid = fork();
-			if (pid == -1)
-			ft_error("Error\n");
-			ft_child_process(fd, argv, envp, infile, pid);
-			i--;
+			outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 0777);
+			if (outfile == -1)
+				ft_error("Error0\n");
+			ft_here_doc(argv[2], argc);
+			i++;
 		}
-		ft_parent_process(fd, argv, envp, outfile);
+		else
+			ft_open_files(&infile, &outfile, argv, argc - 1);
+		while (++i < argc - 1)
+			ft_child_process(argv[i], envp, outfile, argc - i - 2);
+		close(outfile);
+		close(infile);
 	}
 	else
-			ft_error("Error Invalid Arguments\n");
-	close(infile);
-	close(outfile);
+		ft_error("Error Invalid Arguments\n");
 	return (0);
 }

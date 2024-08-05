@@ -6,7 +6,7 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:20:56 by aconciar          #+#    #+#             */
-/*   Updated: 2023/10/30 16:24:02 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:42:43 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,19 +120,19 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	int		fd2;
-// 	int		i = 10;
+int	main(void)
+{
+	int		fd;
+	int		fd2;
+	int		i = 10;
 
-// 	fd = open("file.txt", O_RDONLY);
-// 	fd2 = open("file2.txt", O_RDONLY);
-// 	while (i > 0)
-// 	{
-// 		printf("risultato finale 1: %s", get_next_line(fd));
-// 		printf("risultato finale 1: %s", get_next_line(fd2));
-// 		i--;
-// 	}
-// 	return (0);
-// }
+	fd = open("file.txt", O_RDONLY);
+	fd2 = open("file2.txt", O_RDONLY);
+	while (i > 0)
+	{
+		printf("risultato finale 1: %s", get_next_line(fd));
+		printf("risultato finale 1: %s", get_next_line(fd2));
+		i--;
+	}
+	return (0);
+}

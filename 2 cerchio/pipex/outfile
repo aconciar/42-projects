@@ -1,0 +1,10 @@
+total 48
+drwxrwxr-x 2 aconciar 2023_florence  4096 Mar 28 18:43 get_next_line
+-rw-rw-r-- 1 aconciar 2023_florence    29 Feb 19 17:21 infile
+drwxrwxr-x 3 aconciar 2023_florence  4096 Mar 28 18:59 libft
+-rw-rw-r-- 1 aconciar 2023_florence   968 Mar 28 18:59 Makefile
+-rwxr-xr-x 1 aconciar 2023_florence    82 Mar 15 18:07 outfil2
+-rw-rw-r-- 1 aconciar 2023_florence     0 Mar 28 19:00 outfile
+-rwxr-xr-x 1 aconciar 2023_florence 20504 Mar 28 18:59 pipex
+drwxr-xr-x 3 aconciar 2023_florence  4096 Mar 28 18:59 pipex_utils
+-rw-r--r-- 1 aconciar 2023_florence     0 Mar 16 13:07 pippo

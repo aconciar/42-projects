@@ -6,11 +6,17 @@
 /*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 19:26:08 by andrea            #+#    #+#             */
-/*   Updated: 2024/02/12 19:23:52 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:59:57 by aconciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	ft_error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit (7);
+}
 
 char	*ft_find_path(char **path, char *argv)
 {
@@ -42,6 +48,20 @@ char	**ft_path(char **envp)
 	return (NULL);
 }
 
+int	is_path(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '/' )
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	ft_execute(char *argv, char **envp)
 {
 	char	**cmd;
@@ -50,9 +70,12 @@ void	ft_execute(char *argv, char **envp)
 
 	cmd = ft_split(argv, ' ');
 	path = ft_path(envp);
-	path_ok = ft_find_path(path, cmd[0]);
-	if (!path_ok)
-		exit (5);
+	// if (is_path(cmd[0]) == 1)
+	// 	path_ok = ft_strdup(cmd[0]);
+	// else
+		path_ok = ft_find_path(path, cmd[0]);
+	// if (!path_ok)
+	// 	ft_error("Error execve1\n");
 	if (execve(path_ok, cmd, envp) == -1)
-		exit (6);
+		ft_error("Error execve\n");
 }
