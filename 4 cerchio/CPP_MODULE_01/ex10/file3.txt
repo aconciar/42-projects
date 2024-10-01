@@ -1,0 +1,4 @@
+File3 contains some special characters:
+@#$%^&*()_+[]{};':",./<>?
+Let's see if these characters are displayed correctly.
+End of file3.

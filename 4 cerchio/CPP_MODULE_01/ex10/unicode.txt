@@ -1,0 +1,6 @@
+This file contains some Unicode characters:
+こんにちは (Japanese)
+你好 (Chinese)
+안녕하세요 (Korean)
+😊👍
+End of unicode file.

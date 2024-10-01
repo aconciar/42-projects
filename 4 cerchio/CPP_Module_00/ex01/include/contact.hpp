@@ -1,0 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 18:18:51 by andrea            #+#    #+#             */
+/*   Updated: 2024/09/30 18:23:39 by andrea           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
+
+#include <string>
+
+class contact
+{
+	public:
+		void		set_first_name(std::string first_name);
+		void		set_last_name(std::string last_name);
+		void		set_nickname(std::string nickname);
+		void		set_number(std::string number);
+		void		set_secret(std::string secret);
+		std::string	get_first_name();
+		std::string	get_last_name();
+		std::string	get_nickname();
+		std::string	get_number();
+		std::string	get_secret();
+
+	private:
+		std::string	first_name;
+		std::string	last_name;
+		std::string	nickname;
+		std::string	number;
+		std::string	secret;
+};
+
+#endif
