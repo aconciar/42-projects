@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"iostream": "cpp",
+		"stdexcept": "cpp",
+		"stack": "cpp",
 		"array": "cpp",
 		"atomic": "cpp",
 		"bit": "cpp",
@@ -38,7 +40,6 @@
 		"utility": "cpp",
 		"fstream": "cpp",
 		"initializer_list": "cpp",
-		"iomanip": "cpp",
 		"iosfwd": "cpp",
 		"istream": "cpp",
 		"limits": "cpp",
@@ -46,8 +47,8 @@
 		"ostream": "cpp",
 		"ranges": "cpp",
 		"sstream": "cpp",
-		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"*.tpp": "cpp"
 	}
 }
