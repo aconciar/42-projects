@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:32:23 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/09 15:29:24 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:02:33 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class ShrubberyCreationForm : public AForm
 {
 	public :
+		ShrubberyCreationForm();
 		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);

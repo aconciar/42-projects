@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:58:20 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/07 16:43:48 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:03:18 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Form.hpp"
+
+Form::Form() : _name("Default"), _gradeToSign(150), _gradeToExecute(150)
+{
+	_signed = false;
+}
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {

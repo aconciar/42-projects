@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:37:36 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/09 16:09:34 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:08:12 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Intern::Intern() {}
 
 Intern::Intern(const Intern &src)
 {
-	*this = src;
+	(void)src;
 }
 
 Intern::~Intern() {}

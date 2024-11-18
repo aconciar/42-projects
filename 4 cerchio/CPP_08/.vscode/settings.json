@@ -49,6 +49,8 @@
 		"sstream": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"list": "cpp",
+		"numbers": "cpp"
 	}
 }

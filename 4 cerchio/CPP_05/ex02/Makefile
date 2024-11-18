@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+         #
+#    By: andrea <andrea@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/07 15:16:09 by aconciar          #+#    #+#              #
-#    Updated: 2024/10/09 15:31:00 by aconciar         ###   ########.fr        #
+#    Updated: 2024/11/03 11:19:16 by andrea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = main.cpp \
 OBJ = ${SRC:.cpp=.o}
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 GREEN = \033[0;32m
 RED = \033[0;31m

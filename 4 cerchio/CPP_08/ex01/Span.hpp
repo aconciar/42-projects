@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:12:57 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/16 14:26:50 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:53:11 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Span
 		Span &operator=(const Span &other);
 
 		void	addNumber(int value);
+		template <typename InputIterator>
+		void	addNumber(InputIterator begin, InputIterator end);
 		int		shortestSpan();
 		int		longestSpan();
 

@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/03 13:43:13 by andrea            #+#    #+#             */
+/*   Updated: 2024/11/03 13:46:08 by andrea           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Array.hpp"
 #include "Array.hpp"
 #include <iostream>
 
-int main() {
-    try{
+int main()
+{
+    try
+    {
         Array<int> emptyArray;
         std::cout << "Dimensione array vuoto: " << emptyArray.size() << std::endl;
 

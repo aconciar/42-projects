@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:54:49 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:55:43 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:06:35 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/AForm.hpp"
+
+AForm::AForm() : _name("default"), _gradeToSign(150), _gradeToExecute(150)
+{
+	_signed = false;
+}
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {

@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:54:49 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:55:43 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:02:59 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/AForm.hpp"
+
+AForm::AForm() : _name("default"), _gradeToSign(1), _gradeToExecute(1)
+{
+	_signed = false;
+}
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
@@ -80,17 +84,17 @@ const char* AForm::FormNotSignedException::what() const throw()
 
 std::ostream& operator<<(std::ostream& out, const AForm& Aform)
 {
-    out << "AForm name: " << Aform.getName() << ", is signed: ";
-    if (Aform.getSigned())
+	out << "AForm name: " << Aform.getName() << ", is signed: ";
+	if (Aform.getSigned())
 	{
-        out << "yes";
-    }
+		out << "yes";
+	}
 	else
 	{
-        out << "no";
-    }
-    out << ", grade required to sign: " << Aform.getGradeToSign();
-    out << ", grade required to execute: " << Aform.getGradeToExecute();
+		out << "no";
+	}
+	out << ", grade required to sign: " << Aform.getGradeToSign();
+	out << ", grade required to execute: " << Aform.getGradeToExecute();
 
-    return (out);
+	return (out);
 }

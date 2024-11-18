@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:58:15 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/07 16:42:24 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:43:03 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class Form
 {
 	public :
+		Form();
 		Form(std::string name, int gradeToSign, int gradeToExecute);
 		Form(const Form& other);
 		Form& operator=(const Form& other);
@@ -45,8 +46,8 @@ class Form
 		const int _gradeToSign;
 		const int _gradeToExecute;
 	
-	friend std::ostream& operator<<(std::ostream& os, const Form& form);
 };
 
+std::ostream& operator<<(std::ostream& os, const Form& form);
 
 #endif

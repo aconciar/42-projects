@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:25:16 by aconciar          #+#    #+#             */
-/*   Updated: 2024/10/07 19:05:18 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:02:48 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class AForm
 {
 	public :
+		AForm();
 		AForm(std::string name, int gradeToSign, int gradeToExecute);
 		AForm(const AForm& other);
 		AForm& operator=(const AForm& other);
@@ -52,7 +53,8 @@ class AForm
 		const int _gradeToSign;
 		const int _gradeToExecute;
 	
-	friend std::ostream& operator<<(std::ostream& os, const AForm& form);
 };
+
+std::ostream& operator<<(std::ostream& os, const AForm& form);
 
 #endif

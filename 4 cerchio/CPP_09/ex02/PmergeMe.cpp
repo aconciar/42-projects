@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:24:03 by andrea            #+#    #+#             */
-/*   Updated: 2024/10/22 15:56:10 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:27:32 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ void    print(const std::vector<int> &vector)
 	std::cout << std::endl;
 }
 
+static bool comparePairs(const std::pair<int, int> &a, const std::pair<int, int> &b)
+{
+	if (a.first == b.first)
+		return (a.second < b.second);
+	return (a.first < b.first);
+}
+
 void    PmergeMe::FordjVector(const std::string &input)
 {
 	std::stringstream	ss(input);
@@ -73,17 +80,38 @@ void    PmergeMe::FordjVector(const std::string &input)
 			return ;
 		}
 	}
+	std::vector<std::pair<int, int> > pairs;
 	for (size_t i = 0; i < vector.size(); i += 2)
 	{
-		if (vector[i] > vector[i + 1])
-		{
-			int tmp = vector[i];
-			vector[i] = vector[i + 1];
-			vector[i + 1] = tmp;
-		}
+		int first = vector[i];
+		int second = (i + 1 < vector.size()) ? vector[i + 1] : first;
+		if (first > second)
+			std::swap(first, second);
+		pairs.push_back(std::make_pair(first, second));
 	}
-	
-}
+	std::sort(pairs.begin(), pairs.end(), comparePairs);
+
+        // Visualizzazione delle coppie ordinate
+        std::cout << "Coppie ordinate: ";
+        for (size_t i = 0; i < pairs.size(); ++i) {
+            std::cout << "(" << pairs[i].first << ", " << pairs[i].second << ") ";
+        }
+        std::cout << std::endl;
+
+        // Merge finale dei secondi elementi in ordine crescente
+        std::vector<int> sorted_result;
+        for (size_t i = 0; i < pairs.size(); ++i) {
+            sorted_result.push_back(pairs[i].first);
+            sorted_result.push_back(pairs[i].second);
+        }
+
+        // Visualizzazione del risultato finale
+        std::cout << "Vettore ordinato: ";
+        for (size_t i = 0; i < sorted_result.size(); ++i) {
+            std::cout << sorted_result[i] << " ";
+        }
+        std::cout << std::endl;
+    }
 
 void    PmergeMe::FordjDeque(const std::string &input)
 {

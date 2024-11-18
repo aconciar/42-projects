@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconciar <aconciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrea <andrea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:23:37 by andrea            #+#    #+#             */
-/*   Updated: 2024/10/21 16:51:00 by aconciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:23:23 by andrea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int main(int argc, char **argv)
     }
     PmergeMe pmergeMe(input);
     pmergeMe.FordjVector(input);
-    pmergeMe.PrintVector();
+    // pmergeMe.PrintVector();
     return (0);
 }
