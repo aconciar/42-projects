@@ -49,7 +49,7 @@ let countdown = 3;
 
 let scoreLeft = 0;
 let scoreRight = 0;
-const maxScore = 1;
+const maxScore = 5;
 
 const paddleWidth = 10;
 const paddleHeight = 100;
@@ -146,6 +146,12 @@ function update() {
   // Movimento paddle
   leftPaddle.y += leftPaddle.dy;
   rightPaddle.y += rightPaddle.dy;
+
+  if (leftPaddle.y + paddleHeight  >= canvas.height || leftPaddle.y <= 0)
+    leftPaddle.y -= leftPaddle.dy;
+
+  if (rightPaddle.y + paddleHeight >= canvas.height || rightPaddle.y <= 0)
+    rightPaddle.y -= rightPaddle.dy;
 
   // Punto per player destro
   if (ball.x - ball.radius < 0) {
